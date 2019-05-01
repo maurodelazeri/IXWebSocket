@@ -14,7 +14,7 @@
 #include <vector>
 #include <cstring>
 
-#include <zlib.h>
+#include "zlib.h"
 
 namespace ix
 {
