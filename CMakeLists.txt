@@ -109,8 +109,7 @@ if (APPLE AND USE_TLS)
   target_link_libraries(ixwebsocket "-framework foundation" "-framework security")
 endif()
 
-#find_package( ZLIB REQUIRED )
-find_package( zlib REQUIRED )
+find_package( ZLIB REQUIRED )
 
 if (USE_OPEN_SSL)
   find_package(OpenSSL REQUIRED)
