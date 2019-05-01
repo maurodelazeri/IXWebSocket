@@ -135,8 +135,7 @@ mark_as_advanced(ZLIB_LIBRARY ZLIB_INCLUDE_DIR)
 
 if ( ZLIB_FOUND )
     include_directories( ${ZLIB_INCLUDE_DIRS} )
-    #target_link_libraries( ixwebsocket ${ZLIB_LIBRARIES} )
-    target_link_libraries(ixwebsocket zlib::zlib)
+    target_link_libraries( ixwebsocket ${ZLIB_LIBRARIES} )
 endif( ZLIB_FOUND )
 
 # Modern CMake targets approach
