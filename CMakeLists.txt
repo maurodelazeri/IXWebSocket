@@ -149,6 +149,18 @@ target_include_directories( ixwebsocket PUBLIC ${IXWEBSOCKET_INCLUDE_DIRS} )
 
 set_target_properties(ixwebsocket PROPERTIES PUBLIC_HEADER "${IXWEBSOCKET_HEADERS}")
 
+#======================================== 
+#	find zlib
+#========================================
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
+FIND_PACKAGE("zlib")
+
+IF(NOT ${zlib_FOUND})
+    MESSAGE(FATAL_ERROR "Can't find zlib")
+ENDIF()
+
+TARGET_LINK_LIBRARIES(ixwebsocket zlib::zlib)
+
 install(TARGETS ixwebsocket
         ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/ixwebsocket/
