@@ -123,12 +123,11 @@ if (USE_OPEN_SSL)
 endif()
 
 # Zlib
-find_package(zlib REQUIRED)
-# Global approach
-if(zlib_FOUND)
-   include_directories(${zlib_INCLUDE_DIRS})
-   target_link_libraries (ixwebsocket ${zlib_LIBRARIES})
-endif()
+find_package( ZLIB REQUIRED )
+if ( ZLIB_FOUND )
+    include_directories( ${ZLIB_INCLUDE_DIRS} )
+    target_link_libraries( ixwebsocket ${ZLIB_LIBRARIES} )
+endif( ZLIB_FOUND )
 
 # Modern CMake targets approach
 if(TARGET zlib::zlib)
