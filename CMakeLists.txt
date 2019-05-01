@@ -116,7 +116,7 @@ if (USE_OPEN_SSL)
   add_definitions(${OPENSSL_DEFINITIONS})
   message(STATUS "OpenSSL: " ${OPENSSL_VERSION})
   include_directories(${ZLIB_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR})
-  target_link_libraries(ixwebsocket ${OPENSSL_LIBRARIES} ${ZLIB_LIBRARIES} )
+  target_link_libraries(ixwebsocket ${OPENSSL_LIBRARIES} )
 endif()
 
 if (WIN32)
