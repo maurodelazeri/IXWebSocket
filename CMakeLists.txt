@@ -124,11 +124,19 @@ endif()
 
 # Zlib
 find_package( ZLIB REQUIRED )
+
+find_path(ZLIB_INCLUDE_DIR NAMES zlib.h PATHS ${CONAN_INCLUDE_DIRS_ZLIB})
+find_library(ZLIB_LIBRARY NAMES ${CONAN_LIBS_ZLIB} PATHS ${CONAN_LIB_DIRS_ZLIB})
+
+set(ZLIB_FOUND TRUE)
+set(ZLIB_INCLUDE_DIRS ${ZLIB_INCLUDE_DIR})
+set(ZLIB_LIBRARIES ${ZLIB_LIBRARY})
+mark_as_advanced(ZLIB_LIBRARY ZLIB_INCLUDE_DIR)
+
 if ( ZLIB_FOUND )
     include_directories( ${ZLIB_INCLUDE_DIRS} )
     #target_link_libraries( ixwebsocket ${ZLIB_LIBRARIES} )
     target_link_libraries(ixwebsocket zlib::zlib)
-
 endif( ZLIB_FOUND )
 
 # Modern CMake targets approach
