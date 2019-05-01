@@ -126,13 +126,15 @@ endif()
 find_package( ZLIB REQUIRED )
 if ( ZLIB_FOUND )
     include_directories( ${ZLIB_INCLUDE_DIRS} )
-    target_link_libraries( ixwebsocket ${ZLIB_LIBRARIES} )
+    #target_link_libraries( ixwebsocket ${ZLIB_LIBRARIES} )
+    target_link_libraries(ixwebsocket zlib::zlib)
+
 endif( ZLIB_FOUND )
 
 # Modern CMake targets approach
-if(TARGET zlib::zlib)
-   target_link_libraries(ixwebsocket zlib::zlib)
-endif()
+#if(TARGET zlib::zlib)
+#   target_link_libraries(ixwebsocket zlib::zlib)
+#endif()
 
 if (WIN32)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
