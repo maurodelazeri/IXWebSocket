@@ -151,8 +151,6 @@ set_target_properties(ixwebsocket PROPERTIES PUBLIC_HEADER "${IXWEBSOCKET_HEADER
 #========================================
 find_package(OpenSSL REQUIRED)
 
-#TARGET_LINK_LIBRARIES(ixwebsocket zlib::zlib)
-
 install(TARGETS ixwebsocket
         ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/ixwebsocket/
