@@ -123,11 +123,7 @@ if (USE_OPEN_SSL)
 endif()
 
 if (WIN32)
-  add_subdirectory(third_party/zlib)
-  include_directories(third_party/zlib ${CMAKE_CURRENT_BINARY_DIR}/third_party/zlib)
-  target_link_libraries(ixwebsocket zlibstatic wsock32 ws2_32)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-
 else()
   # gcc/Linux needs -pthread
   find_package(Threads)
@@ -149,17 +145,13 @@ target_include_directories( ixwebsocket PUBLIC ${IXWEBSOCKET_INCLUDE_DIRS} )
 
 set_target_properties(ixwebsocket PROPERTIES PUBLIC_HEADER "${IXWEBSOCKET_HEADERS}")
 
+
 #======================================== 
 #	find zlib
 #========================================
-SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
-FIND_PACKAGE("zlib")
+find_package(OpenSSL REQUIRED)
 
-IF(NOT ${zlib_FOUND})
-    MESSAGE(FATAL_ERROR "Can't find zlib")
-ENDIF()
-
-TARGET_LINK_LIBRARIES(ixwebsocket zlib::zlib)
+#TARGET_LINK_LIBRARIES(ixwebsocket zlib::zlib)
 
 install(TARGETS ixwebsocket
         ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
