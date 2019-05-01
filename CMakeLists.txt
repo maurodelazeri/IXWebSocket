@@ -122,6 +122,19 @@ if (USE_OPEN_SSL)
   target_link_libraries(ixwebsocket ${OPENSSL_LIBRARIES})
 endif()
 
+# Zlib
+find_package(zlib)
+# Global approach
+if(zlib_FOUND)
+   include_directories(${zlib_INCLUDE_DIRS})
+   target_link_libraries (ixwebsocket ${zlib_LIBRARIES})
+endif()
+
+# Modern CMake targets approach
+if(TARGET zlib::zlib)
+   target_link_libraries(ixwebsocket zlib::zlib)
+endif()
+
 if (WIN32)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 else()
