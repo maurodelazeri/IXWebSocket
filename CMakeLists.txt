@@ -123,7 +123,7 @@ if (USE_OPEN_SSL)
 endif()
 
 # Zlib
-find_package(zlib)
+find_package(zlib REQUIRED)
 # Global approach
 if(zlib_FOUND)
    include_directories(${zlib_INCLUDE_DIRS})
