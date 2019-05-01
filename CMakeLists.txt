@@ -87,7 +87,8 @@ else()
     list( APPEND IXWEBSOCKET_HEADERS ixwebsocket/IXSelectInterruptEventFd.h)
 endif()
 
-set(USE_OPEN_SSL FALSE)
+set(USE_OPEN_SSL TRUE)
+
 if (USE_TLS)
     add_definitions(-DIXWEBSOCKET_USE_TLS)
 
@@ -152,7 +153,3 @@ install(TARGETS ixwebsocket
         ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/ixwebsocket/
 )
-
-if (NOT WIN32)
-    add_subdirectory(ws)
-endif()
