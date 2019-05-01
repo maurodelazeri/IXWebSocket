@@ -114,34 +114,15 @@ if (APPLE AND USE_TLS)
   target_link_libraries(ixwebsocket "-framework foundation" "-framework security")
 endif()
 
+find_package( ZLIB REQUIRED )
+
 if (USE_OPEN_SSL)
   find_package(OpenSSL REQUIRED)
   add_definitions(${OPENSSL_DEFINITIONS})
   message(STATUS "OpenSSL: " ${OPENSSL_VERSION})
-  include_directories(${OPENSSL_INCLUDE_DIR})
-  target_link_libraries(ixwebsocket ${OPENSSL_LIBRARIES})
+  include_directories(${ZLIB_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR})
+  target_link_libraries(ixwebsocket ${OPENSSL_LIBRARIES} ${ZLIB_LIBRARIES} )
 endif()
-
-# Zlib
-find_package( ZLIB REQUIRED )
-
-find_path(ZLIB_INCLUDE_DIR NAMES zlib.h PATHS ${CONAN_INCLUDE_DIRS_ZLIB})
-find_library(ZLIB_LIBRARY NAMES ${CONAN_LIBS_ZLIB} PATHS ${CONAN_LIB_DIRS_ZLIB})
-
-set(ZLIB_FOUND TRUE)
-set(ZLIB_INCLUDE_DIRS ${ZLIB_INCLUDE_DIR})
-set(ZLIB_LIBRARIES ${ZLIB_LIBRARY})
-mark_as_advanced(ZLIB_LIBRARY ZLIB_INCLUDE_DIR)
-
-if ( ZLIB_FOUND )
-    include_directories( ${ZLIB_INCLUDE_DIRS} )
-    target_link_libraries( ixwebsocket ${ZLIB_LIBRARIES} )
-endif( ZLIB_FOUND )
-
-# Modern CMake targets approach
-#if(TARGET zlib::zlib)
-#   target_link_libraries(ixwebsocket zlib::zlib)
-#endif()
 
 if (WIN32)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
