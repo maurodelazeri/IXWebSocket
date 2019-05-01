@@ -158,12 +158,6 @@ target_include_directories( ixwebsocket PUBLIC ${IXWEBSOCKET_INCLUDE_DIRS} )
 
 set_target_properties(ixwebsocket PROPERTIES PUBLIC_HEADER "${IXWEBSOCKET_HEADERS}")
 
-
-#======================================== 
-#	find zlib
-#========================================
-find_package(OpenSSL REQUIRED)
-
 install(TARGETS ixwebsocket
         ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/ixwebsocket/
