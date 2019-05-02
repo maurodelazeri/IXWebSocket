@@ -39,15 +39,8 @@ namespace ix
 #ifdef IXWEBSOCKET_USE_TLS
 # ifdef __APPLE__
             socket = std::make_shared<SocketAppleSSL>();
-# elif defined(_WIN32)
-            socket = std::make_shared<SocketSChannel>();
 # else
             socket = std::make_shared<SocketOpenSSL>();
-# endif
-#else
-            socket = std::make_shared<SocketOpenSSL>();
-            //errorMsg = "TLS support is not enabled on this platform.";
-            //return nullptr;
 #endif
         }
 
