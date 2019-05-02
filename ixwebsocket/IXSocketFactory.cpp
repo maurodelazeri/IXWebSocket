@@ -45,8 +45,9 @@ namespace ix
             socket = std::make_shared<SocketOpenSSL>();
 # endif
 #else
-            #errorMsg = "TLS support is not enabled on this platform.";
-            #return nullptr;
+            socket = std::make_shared<SocketOpenSSL>();
+            //errorMsg = "TLS support is not enabled on this platform.";
+            //return nullptr;
 #endif
         }
 
