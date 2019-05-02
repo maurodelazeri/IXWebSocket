@@ -6,8 +6,6 @@
 
 #include "IXSocketFactory.h"
 
-#ifdef IXWEBSOCKET_USE_TLS
-
 # ifdef __APPLE__
 #  include <ixwebsocket/IXSocketAppleSSL.h>
 # elif defined(_WIN32)
@@ -15,12 +13,6 @@
 # else
 #  include <ixwebsocket/IXSocketOpenSSL.h>
 # endif
-
-#else
-
-#include <ixwebsocket/IXSocket.h>
-
-#endif
 
 namespace ix
 {
@@ -36,7 +28,6 @@ namespace ix
         }
         else
         {
-#ifdef IXWEBSOCKET_USE_TLS
 # ifdef __APPLE__
             socket = std::make_shared<SocketAppleSSL>();
 # elif defined(_WIN32)
@@ -44,10 +35,6 @@ namespace ix
 # else
             socket = std::make_shared<SocketOpenSSL>();
 # endif
-#else
-            errorMsg = "TLS support is not enabled on this platform.";
-            return nullptr;
-#endif
         }
 
         if (!socket->init(errorMsg))
